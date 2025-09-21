@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, signal } from "@angular/core";
+import { environment } from "@env/environment";
 import { tap } from "rxjs";
 
 export interface Task {
@@ -15,7 +16,7 @@ export interface Task {
   providedIn: 'root'
 })
 export class TaskService {
-  private apiUrl = 'https://task-backend.onrender.com/tasks';
+  private apiUrl = environment.apiUrl + '/tasks';
   tasks = signal<Task[]>([]);
 
   constructor(private http: HttpClient) {}

@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, signal } from "@angular/core";
 import { Router } from "@angular/router";
+import { environment } from "@env/environment";
 import { tap } from "rxjs";
 
 interface User {
@@ -18,7 +19,7 @@ interface AuthResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'https://task-backend.onrender.com/auth';
+  private apiUrl = environment.apiUrl + '/auth';
   private tokenKey = 'auth_token';
   private userSignal = signal<User | null>(null);
 
