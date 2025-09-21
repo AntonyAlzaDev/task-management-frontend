@@ -18,7 +18,7 @@ interface AuthResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000/auth';
+  private apiUrl = 'https://task-backend.onrender.com/auth';
   private tokenKey = 'auth_token';
   private userSignal = signal<User | null>(null);
 
