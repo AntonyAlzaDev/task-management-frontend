@@ -1,0 +1,40 @@
+<div class="task-container">
+      <div class="task-header">
+        <h2>My Tasks</h2>
+        <button (click)="showForm = !showForm" class="btn-add">
+          {{ showForm ? 'Cancel' : 'Add Task' }}
+        </button>
+      </div>
+
+      <div class="task-form" *ngIf="showForm">
+        <input [(ngModel)]="newTask.title" placeholder="Task title" required>
+        <textarea [(ngModel)]="newTask.description" placeholder="Description"></textarea>
+        <select [(ngModel)]="newTask.priority">
+          <option value="low">Low Priority</option>
+          <option value="medium">Medium Priority</option>
+          <option value="high">High Priority</option>
+        </select>
+        <input type="date" [(ngModel)]="newTask.dueDate">
+        <button (click)="addTask()" class="btn-save">Save Task</button>
+      </div>
+
+      <div class="tasks-grid">
+        <div *ngFor="let task of taskService.tasks()" class="task-card" 
+             [class.completed]="task.status === 'completed'">
+          <div class="task-content">
+            <h3>{{ task.title }}</h3>
+            <p>{{ task.description }}</p>
+            <div class="task-meta">
+              <span class="badge" [class]="'badge-' + task.priority">{{ task.priority }}</span>
+              <span class="badge" [class]="'badge-' + task.status">{{ task.status }}</span>
+            </div>
+          </div>
+          <div class="task-actions">
+            <button (click)="completeTask(task.id!)" 
+                    *ngIf="task.status !== 'completed'"
+                    class="btn-complete">Complete</button>
+            <button (click)="deleteTask(task.id!)" class="btn-delete">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>

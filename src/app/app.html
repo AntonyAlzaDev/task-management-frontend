@@ -1,0 +1,12 @@
+<div class="app-container">
+      <nav class="navbar" *ngIf="isAuthenticated()">
+        <h1>Task Manager</h1>
+        <div class="nav-actions">
+          <span>{{ currentUser()?.name }}</span>
+          <button (click)="logout()">Logout</button>
+        </div>
+      </nav>
+      <main class="main-content">
+        <router-outlet></router-outlet>
+      </main>
+    </div>
